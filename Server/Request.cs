@@ -24,10 +24,10 @@ namespace Server
                 return null;
             }
 
-            String[] tokens = request.Split(' ');
+            String[] tokens = request.Split(' ', '\n');
             String type = tokens[0];
             String url = tokens[1];
-            String host = tokens[3];
+            String host = tokens[4];
             String referer = "";
 
             for (int i = 0; i < tokens.Length; i++)
@@ -38,10 +38,9 @@ namespace Server
                     break;
                 }
             }
-            Console.WriteLine(".............Type: " + type);
-            Console.WriteLine(".............Url: " + url);
-            Console.WriteLine(".............Host: " + host);
-            Console.WriteLine(".............Referer: " + referer);
+
+
+            Console.WriteLine(String.Format("{0} {1} @ {2} \nReferer: {3}", type, url, host, referer));
             return new Request(type, url, host, referer);
         }
     }
