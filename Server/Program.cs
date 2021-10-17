@@ -6,7 +6,7 @@ namespace Server
     {   
         static void Main(string[] args)
         {
-            Console.WriteLine("Iniciando");
+            Console.WriteLine("Iniciando en el puerto 8080\n");
             HTTPServer server = HTTPServer.GetInstance();
             server.Start();
         }

@@ -28,6 +28,7 @@ namespace Server
             if(request.Type == "GET")
             {
                 String file = Environment.CurrentDirectory + HTTPServer.WEB_DIR + request.URL;
+                
                 FileInfo fInfo = new FileInfo(file);
 
                 if (fInfo.Exists && fInfo.Extension.Contains("."))
@@ -36,7 +37,7 @@ namespace Server
                 }
                 else
                 {
-                    DirectoryInfo dInfo = new DirectoryInfo(fInfo + "/");
+                    DirectoryInfo dInfo = new DirectoryInfo(fInfo + "\\");
                     if (!dInfo.Exists)
                     {
                         return MakePageNotFound();
@@ -71,44 +72,49 @@ namespace Server
          
             FileStream fs = fInfo.OpenRead();
             BinaryReader reader = new BinaryReader(fs);
-            Byte[] d = new byte[fs.Length];
+            Byte[] b = new byte[fs.Length];
 
-            reader.Read(d, 0, d.Length);
+            reader.Read(b, 0, b.Length);
             fs.Close(); 
 
-            return new Response("200 OK", "html/text", d);
+            return new Response("200 OK", "html/text", b);
         }
 
         private static Response MakeNullRequest()
         {
             String file = Environment.CurrentDirectory + HTTPServer.MSG_DIR + "400.html";
+            Console.WriteLine("NULL REQUEST ::::" + file);
             FileInfo fileInf = new FileInfo(file);
             FileStream fs = fileInf.OpenRead();
             BinaryReader reader = new BinaryReader(fs);
-            Byte[] d = new byte[fs.Length];
+            Byte[] b = new byte[fs.Length];
 
-            reader.Read(d, 0, d.Length);
+            reader.Read(b, 0, b.Length);
             fs.Close();
 
-            return new Response("400 Bad Request", "html/text", d);
+            return new Response("400", "html\\text", b);
         }
 
         private static Response MakePageNotFound()
         {
             String file = Environment.CurrentDirectory + HTTPServer.MSG_DIR + "404.html";
+            Console.WriteLine("NOT FOUND ::::" + file);
             FileInfo fileInf = new FileInfo(file);
             FileStream fs = fileInf.OpenRead();
             BinaryReader reader = new BinaryReader(fs);
             Byte[] d = new byte[fs.Length];
+            Console.WriteLine("----------------------");
+            Console.WriteLine(d.Length);
 
             reader.Read(d, 0, d.Length);
             fs.Close();
 
-            return new Response("404 Not Found", "html/text", d);
+            return new Response("404", "html\\text", d);
         }
 
         public void Post(NetworkStream stream)
         {
+           
             StreamWriter writer = new StreamWriter(stream);
             writer.WriteLine(String.Format("{0} {1}\r\nServer: {2}\r\nAccept-Ranges: bytes\r\nContent-Length: {4}\r\n", 
                HTTPServer.VERSION, status, HTTPServer.NAME, mime, data.Length));

@@ -8,9 +8,9 @@ namespace Server
 {
     public class HTTPServer
     {
-        public const String MSG_DIR = "/root/msg/";
-        public const String WEB_DIR = "/root/web/";
-        public const String VERSION = "HTTP/1.1";
+        public const String MSG_DIR = "\\root\\msg\\";
+        public const String WEB_DIR = "\\root\\web\\";
+        public const String VERSION = "HTTP\\1.1";
         public const String NAME = "ServidorP";
 
         private bool running = false;
