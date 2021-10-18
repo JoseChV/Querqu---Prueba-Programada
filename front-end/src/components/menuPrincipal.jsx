@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
+
 import Container from "react-bootstrap/Container";
 
 class MenuPrincipal extends React.Component {
@@ -14,17 +14,48 @@ class MenuPrincipal extends React.Component {
     return (
       <div>
         <Container fluid="md">
-          <Button onClick={this.handleButton} variant="primary">
-            Propiedades
-          </Button>
+          <form action="../createProperty/post" method="post" className="form">
+            <Container>
+              <label>
+                Tipo de Propiedad:
+                <input type="number" name="idPropType" />
+              </label>
+              <label>
+                Dueño:
+                <input type="number" name="owner" />
+              </label>
+              <label>
+                Numero:
+                <input type="text" name="number" />
+              </label>
+              <label>
+                Direccion:
+                <input type="text" name="address" />
+              </label>
+              <label>
+                Area:
+                <input type="number" name="area" />
+              </label>
+              <label>
+                Area de construcción:
+                <input type="number" name="constructionArea" />
+              </label>
+              <button type="primary">Registrar Propiedad</button>
+            </Container>
+          </form>
           {"  "}
-          <Button onClick={this.handleButton} variant="succes">
-            Dueños
-          </Button>
-          {"  "}
-          <Button onClick={this.handleButton} variant="warning">
-            Tipos de Propiedades
-          </Button>
+
+          <form action="../createOwner/post" method="post" className="form">
+            <button type="submit">Registrar Dueño</button>
+          </form>
+
+          <form
+            action="../createPropertyType/post"
+            method="post"
+            className="form"
+          >
+            <button type="submit">Registrar Tipo de Propiedad</button>
+          </form>
         </Container>
       </div>
     );
