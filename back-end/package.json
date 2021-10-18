@@ -1,8 +1,8 @@
 {
-    "name": "prueba-programada",
+    "name": "back-end",
     "version": "1.0.0",
     "description": "",
-    "main": "prueba-programada.js",
+    "main": "back-end.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node prueba-programada.js",
